@@ -3,6 +3,7 @@ plugins {
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
   id 'war'
+  id 'jacoco'
 }
 
 group = 'co.com'
@@ -35,6 +36,32 @@ dependencies {
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+jacoco {
+  toolVersion = "0.8.5"
+  reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
 test {
-  useJUnitPlatform()
+  jacoco {
+    //append = false
+    destinationFile = file("$buildDir/jacoco/jacoco.exec")
+  }
+}
+
+println project.name
+println "$buildDir/jacoco/"
+println getBuildDir().toString() + File.separator.toString() + "jacoco" + File.separator.toString() + "coverage.xml"
+
+jacocoTestReport {
+  description = "Generate Jacoco coverage reports"
+  reports {
+    //xml.enabled true
+    xml.enabled false
+    //xml.destination file("${project.buildDir}/reports/jacoco/report.xml")
+    //xml.destination = file(getBuildDir().toString() + File.separator.toString() + "jacoco" + File.separator.toString()+"coverage.xml")
+    csv.enabled false
+    //html.destination file("${project.buildDir}/reports/jacoco/html")
+    //html.destination = file(getBuildDir().toString() + File.separator.toString() + "jacoco" + File.separator.toString() + "html")
+    html.destination file("${buildDir}/jacocoHtml")
+  }
 }

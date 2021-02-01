@@ -19,7 +19,7 @@ import java.util.List;
 
 
 @RunWith(MockitoJUnitRunner.class)
-class ClienteTests {
+public class ClienteTests {
 
     @Mock
     private ClienteRepository clienteRepository;
@@ -35,6 +35,7 @@ class ClienteTests {
 
     private List<Cliente> listaEsperados;
     private List<Cliente> listaEntrada;
+
     @Before
     public void setup(){
         listaEsperados = new ArrayList<>();
