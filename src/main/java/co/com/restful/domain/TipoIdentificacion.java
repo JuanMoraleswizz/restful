@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "tipo_identificacion")
 @Entity
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TipoIdentificacion {
+public class TipoIdentificacion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +21,6 @@ public class TipoIdentificacion {
 
     @Column(name = "nombre", nullable = false)
     private String nombre;
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "tipoIdentificacion")
-    private Cliente cliente;
 
     @Column(name = "estado")
     private Boolean estado;

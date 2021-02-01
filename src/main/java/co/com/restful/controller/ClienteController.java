@@ -53,7 +53,6 @@ public class ClienteController {
     @PostMapping(value = "/" , consumes = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation("guarda un cliente en la base datos")
     @ApiResponse(code = 200, message = "OK")
-
     public ResponseEntity<Long> guardar(@RequestBody Cliente cliente){
         Long resultado = 0L;
         try {

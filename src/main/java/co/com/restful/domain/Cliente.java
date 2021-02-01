@@ -3,6 +3,7 @@ package co.com.restful.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table
 @Entity
@@ -11,14 +12,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cliente {
+public class Cliente  implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "tipo_documento", referencedColumnName = "id")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "tipo_documento")
     private TipoIdentificacion tipoIdentificacion;
 
     @Column(name = "identificacion", nullable = false, length = 12, unique = true)
